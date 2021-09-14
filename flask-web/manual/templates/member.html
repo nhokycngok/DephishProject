@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Members{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/member.css">
+<script src="/static/js/member.js"></script>
+<script src="/static/js/checkPass.js"></script>
+<h1 style="color:#CC9E29;margin-left: 30px;">Members</h1>
+
+<a class="add_style_member btn btn-primary" style="margin-left: 220px;" onclick="open_from_member()" {{c}}>Add new</a>
+
+<div id="search_member" style="width:400px; display: block; float:right; margin-top:-67px">
+    <form action="/all_member" class="form-container" method="get" style="max-width: 800px;">
+        <!--        <h5>Search member</h5>-->
+        <div style="display: flex">
+            <div>
+                <input id="up_1" type="text" placeholder="{{username_search}}" name="username_search"
+                       style="height:45px" required>
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="form-popup" id="myForm" style="margin: 10px 24% 10px;  width: 800px; border: none">
+    <form action="/addMember/" class="form-container" method="post" style="max-width: 800px;" onSubmit = "return checkPassword(this)" >
+        <div style="display: flex">
+            <div>
+                <input type="text" placeholder="username" name="username" style="height:45px" required>
+            </div>
+            <div>
+                <input type="password" placeholder="password" name="password" style="height:45px" required>
+            </div>
+            <div>
+                <input type="password" placeholder="repassword" name="repassword" style="height:45px" required>
+            </div>
+
+            <div>
+                <select name="role" id="role" class="style_select_member">
+                    <option value="viewer">Viewer</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Admin</option>
+                </select>
+
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Add
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div style="margin: 0px 30px;">
+    <table id="table_1" class="container" style="margin-left:0;">
+        {% for column in columns %}
+        <th><span style="text-transform:uppercase;">{{column}}</span></th>
+        {% endfor %}
+        {% for member in all_member %}
+        <tr>
+            <th style="width: 40%;">{{member['name']}}</th>
+            <th style="width: 40%;">{{member['role']}}</th>
+            <th style="width: 0%;"><a href="/reset?name={{member['name']}}" class="btn btn-primary"
+                                       onclick="return confirm('Are you sure reset password?')" style="width:150px">Reset Password</a></th>
+
+            <th style="width: 0%; ">
+                {% if 'admin' != member['role'] %}
+                <a href="/deleteMember/?username={{member['name']}}" style="background-color: #6c757d;"
+                   class="btn btn-primary"
+                   onclick="return confirm('Are you sure Delete user?')">Delete</a>
+                {% endif %}
+            </th>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div style="margin: 0px 100px; margin-top:30px;">
+  <div class="pagination" style="right: 33px;position: absolute;">
+      {% if 1 != padgin_active %}
+      <a href="/all_member?page_index=min&username_search={{username_search}}">&laquo;</a>
+      {% endif %}
+      {% for pad in padging %}
+      {% if pad == padgin_active %}
+      <a class="active" href="/all_member?page_index={{pad}}&username_search={{username_search}}">{{pad}}</a>
+      {% else %}
+      <a href="/all_member?page_index={{pad}}&username_search={{username_search}}">{{pad}}</a>
+      {% endif %}
+      {% endfor %}
+      {% if 1 != padgin_active %}
+      <a href="/all_member?page_index=max&username_search={{username_search}}">&raquo;</a>
+      {% endif %}
+  </div>
+
+{% endblock %}

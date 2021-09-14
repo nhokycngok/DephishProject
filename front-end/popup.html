@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="ui/popup.css" type="text/css" >
+    <link rel="stylesheet" href="ui/circle.css">
+    
+  </head>
+  <body>
+    <div style="background-color: #ed7d31; margin-bottom: 20px;">
+      <img class="fpt-image" src="ui/logo_v2.png">
+    </div>
+    <div>
+      <h3 class="domain" id="domain"></h3>
+    </div>
+    <div class="c100 center" id="color">
+      <span id="percen">%</span>
+      <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+      </div>
+    </div>
+    <div class="marginTop" style="text-align:center;">
+      <b class="confirm" id="confirm"></b>
+    </div>
+    <div class="marginTop" style="text-align:center;">
+      <b class="confirm" id="confirm2"></b>
+    </div>
+    <div><p style="text-align: center;" id="guide">Nếu phát hiện cảnh báo sai, vui lòng báo cáo tại đây</p>
+    <button id="report" style="display: block;" class="button report" >Báo cáo</button>
+    <h3 id="sendStatus" style="display: none; 
+    text-align: center;color: green;margin-bottom: 20px;">Bạn đã gửi báo cáo thành công</h3>
+  </div>
+    <script type="text/javascript" src="popup.js"></script>
+  </body>
+</html>

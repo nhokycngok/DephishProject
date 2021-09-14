@@ -1,0 +1,51 @@
+body {
+    background-color: white;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #E94033;
+    color: white;
+    font-size: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
+    padding: 0px 12px;
+    border: none;
+}
+button:hover {
+    background-color: #CC9E29;
+    color: white;
+    font-size: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
+    padding: 0px 12px;
+    border: none;
+}
+
+.avatar {
+    width: 250px;
+    height: 250px;
+}
+
+.avatar-image {
+    width: 150px;
+    height: 150px;
+}
+
+img.danger-block {
+    margin-right: 250px;
+}

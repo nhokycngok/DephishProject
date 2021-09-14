@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Phishing Report{% endblock %}
+{% block content %}
+<H1 style="color:#CC9E29;margin-left: 30px;">Phishing Report</H1>
+<script src="/static/js/vdomainBlack.js"></script>
+<link rel="stylesheet" href="/static/css/vdomain.css">
+<div id="search_vdomain_black" style="width:400px; display: block; float:right; margin-top:-67px">
+    <form action="/phishingReport/" class="form-container" method="get" style="max-width: 800px;">
+        <div style="display: flex">
+            <div>
+                <input id="up_1" type="text" placeholder="{{domain_search}}" name="domain_search"style="height:45px" required>
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% if urls[0]|length == 0 %}
+    <h1 style="text-align: center;margin-top: 30px;">List empty</h1>
+{% else %}
+
+
+<div style="margin: 0px 30px;">
+    <table id="table_1" class="container" style="margin-left:0;">
+        <th><span style="text-transform:uppercase;">DOMAIN</span></th>
+        <th><span style="text-transform:uppercase;" {{a}}>type checked</span></th>
+        <th><span style="text-transform:uppercase;" {{a}}>level</span></th>
+        {% for url in urls %}
+        <tr>
+            <th>{{url['domain']}}</th>
+            {% if url['type'] =='black' %}
+           <th style="width: 20%;"><select id="type{{url['domain']}}" name="typechecked" {{a}}>
+                <option value="phishing">phishing</option>
+                <option value="brand abuse">brand abuse</option>
+                <option value="undefined">undefined</option>
+            </select></th>
+            <th style="width: 20%;"><select id="level{{url['domain']}}" name ="level" {{a}}>
+                <option value="low"  selected="selected">low</option>
+                <option value="medium">medium</option>
+                <option value="hight">high</option>
+                <option value="undefined">undefined</option>
+            </select></th>
+            {% else %}
+            <th></th>
+            <th></th>
+            {% endif %}
+            <th style="width: 0%;"><a onclick="return send_verify('{{url['domain']}}','{{url['type']}}')" {{a}}
+                   class="btn btn-success">True</a>
+            </th>
+            <th style="width: 0%;" ><a  onclick="return send_del('{{url['domain']}}', '{{url['type']}}')" class="btn btn-danger" {{a}}>False</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div style="margin: 0px 100px; margin-top:30px;">
+    <div class="pagination" style="right: 33px; position: absolute;">
+        {% if 1 != padgin_active %}
+        <a href="/phishingReport/?page_index=min&domain_search={{domain_search}}">&laquo;</a>
+        {% endif %}
+        {% for pad in padging %}
+        {% if pad == padgin_active %}
+        <a class="active" href="/phishingReport/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% else %}
+        <a href="/phishingReport/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% endif %}
+        {% endfor %}
+        {% if 1 != padgin_active %}
+        <a href="/phishingReport/?page_index=max&domain_search={{domain_search}}">&raquo;</a>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}

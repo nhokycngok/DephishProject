@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Update Page{% endblock %}
+{% block content %}
+<div>
+    <form action="/addblack/" id="add-form-black" style="display: none;" method="POST">
+        <div class="mb-3">
+            <label class="form-label">URL</label>
+            <input type="text" name="new_url" class="form-control" style="width: 50%;">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Type</label>
+            <input type="text" name="new_type" class="form-control" style="width: 50%;">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Verify</label>
+            <input type="text" name="new_verified" class="form-control" style="width: 50%;">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

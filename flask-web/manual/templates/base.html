@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/sidebars.css">
+    <link rel="stylesheet" href="/static/css/dropdown.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/sidebars.js"></script>
+    <script src="/static/js/popup.js"></script>
+</head>
+
+<body>
+
+<div style="display: flex">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white "
+         style="width: 280px; height: 100vh; position: fixed;    background-color: #cc9e29;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+           style="MARGIN-LEFT: auto;MARGIN-RIGHT: AUTO; ">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+            <span class="fs-4"><img class="logo" style="object-fit: cover;" src="/static/img/logo_.png"></span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto" style="MARGIN-RIGHT: AUTO;">
+            <li class="nav-item">
+                <a id="home_taskbar"  href="/home" class="dropbtn" aria-current="page" style="font-size: larger;">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a id="home_blacklist"  href="/blacklist" class="dropbtn" style="font-size: larger;">
+                    Blacklist
+                </a>
+            </li>
+            <li>
+                <a id="home_whitelist"  href="/whitelist" class="dropbtn" style="font-size: larger;">
+                    Whitelist
+                </a>
+            </li>
+            <!--            <li class="nav-item">-->
+            <!--                <a href="/vdomain" class="nav-link text-white" aria-current="page" style="font-size: larger;">-->
+            <!--                    Report Management-->
+            <!--                </a>-->
+            <!--            </li>-->
+
+            <li  class="dropdown">
+                <a id="home_report"  href="javascript:void(0)" class="dropbtn" style="font-size: larger;">Report Management</a>
+                <div class="dropdown-content" style="margin-left: 15px; width:150px">
+                    <a id="home_report_black"  href="/phishingReport/">Phishing Report</a>
+                    <a id="home_report_white"  href="/legitimateReport/">Legitimate Report</a>
+                </div>
+            </li>
+
+
+            {% if role =='admin' %}
+            <li>
+                <a id="home_all_member" href="/all_member" class="dropbtn" style="font-size: larger;">
+                    Members
+                </a>
+            </li>
+
+            {% else %}
+            {% endif %}
+
+
+        </ul>
+        <hr>
+
+        <div class="dropdown">
+
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+               id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="/static/img/avatar.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>{{username}}</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+
+                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="/user/signout">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="margin-left: 280px">
+        <div>
+            <div style="height: 19px;">
+                <h4></h4>
+            </div>
+            <div>
+                {% block content%}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/static/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="/static/js/base_bold.js"></script>
+</body>
+</html>

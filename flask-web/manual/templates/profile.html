@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Profile Page{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/member.css">
+<H1 style="color:#CC9E29;margin-left: 30px;">Profile</H1>
+
+<div style="margin: 30px 30px;">
+    <table>
+        <tr>
+            <th style="width: 10%; height: 50px;">Username</th>
+            <th>{{username}}</th>
+        </tr>
+        <tr style="background-color: #ffffff">
+            <th style="width: 10%;height: 50px;">Role</th>
+            <th>{{role}}</th>
+        </tr>
+    </table>
+    <a href="/change_pass" class="btn btn-secondary" >Change Password</a>
+</div>
+
+
+{% endblock %}

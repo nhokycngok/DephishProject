@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Update Page{% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/css/signup.css">
+<div class="frame">
+    <form name="change_pass" action="">
+        <div class="container">
+            <h1 style="text-align: center;">Change Password</h1>
+            <label for="old_password"><b>Old password</b></label>
+            <input type="text" name="name" value="{{username}}" hidden>
+            <input type="password" placeholder="Enter Old Password" name="old_password" required>
+            <label for="new_password"><b>New Password</b></label>
+            <input type="password" placeholder="Enter Password" name="new_password" required>
+            <label for="new_password_"><b>Confirm Password </b></label>
+            <input type="password" placeholder="Enter Password" name="new_password_" required>
+            <p class="error error--hidden"></p>
+            <button type="submit" value="Signup">Change</button>
+        </div>
+    </form>
+</div>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/pass.js"></script>
+{% endblock %}

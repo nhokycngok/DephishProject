@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "DePhish",
+    "version": "1.0",
+
+    "icons": {
+        "48": "ui/avatar-round.png"
+    },
+
+    "background":{
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+
+    "permissions": [
+        "activeTab"
+    ],
+
+    "content_scripts":[
+        {
+            "matches": ["http://*/*","https://*/*"],
+            "js":["lib/jquery-3.6.0.js","lib/FileSaver.js","features.js"]
+        }
+    ],
+
+    "web_accessible_resources": ["js/block.js","block.html"],
+
+    "browser_action": {
+        "default_title": "Detect Phishing",
+        "default_icon": "ui/avatar-round.png",
+        "default_popup": "popup.html"
+    },
+
+    "commands": {
+        "_execute_browser_action": {
+          "suggested_key": "Ctrl+Shift+Y"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<H3>{{list_name}}</H3>
+<table>
+    {% for column in columns %}
+    <th>{{column}}</th>
+    {% endfor %}
+    {% for user in users %}
+    <tr>
+        <th>{{user['name']}}</th>
+        <th>{{user['password']}}</th>
+    </tr>
+    {% endfor %}
+</table>
+<a class="btn btn-primary" href="/signup">signup</a>
+{% endblock %}

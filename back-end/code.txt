@@ -1,0 +1,38 @@
+/////////////////code send data//////////////////
+var data = '{ "url": "google.com", "havingIpAddress": "-1", "shortenService": "-1", "missingTittle": "-1", "domainContain": "-1", "redirect": "-1" }'
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://192.168.1.32:8080/items/");
+xhr.setRequestHeader("accept", "application/json");
+xhr.setRequestHeader("content-type", "application/json");
+
+xhr.send(data);
+
+/////////////////code api///////////////////
+from typing import Optional
+from fastapi import FastAPI
+from pydantic import BaseModel # import class BaseModel của thư viện pydantic
+
+
+class Item(BaseModel): # kế thừa từ class Basemodel và khai báo các biến
+    url: str
+    havingIpAddress: str
+    shortenService: str
+    missingTittle:str
+    domainContain:str
+    redirect:str
+
+
+app = FastAPI()
+
+
+@app.post("/items/")
+async def create_item(item: Item): # khai báo dưới dạng parameter
+    return item

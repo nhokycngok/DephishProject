@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Update Page{% endblock %}
+{% block content %}
+<div>
+    <form action="/addwhite/" id="add-form-white"  method="POST">
+        <div class="mb-3">
+            <label class="form-label">URL</label>
+            <input type="text" name="domain" class="form-control" style="width: 50%;">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

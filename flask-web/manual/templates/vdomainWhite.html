@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Legitimate Report{% endblock %}
+{% block content %}
+<H1 style="color:#CC9E29;margin-left: 30px;">Legitimate Report</H1>
+<script src="/static/js/vdomainWhite.js"></script>
+<link rel="stylesheet" href="/static/css/vdomain.css">
+<div id="search_vdomain_white" style="width:400px; display: block; float:right; margin-top:-67px">
+    <form action="/legitimateReport/" class="form-container" method="get" style="max-width: 800px;">
+        <div style="display: flex">
+            <div>
+                <input id="up_1" type="text" placeholder="{{domain_search}}" name="domain_search" style="height:45px" required>
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% if urls[0]|length == 0 %}
+    <h1 style="text-align: center;margin-top: 30px;">List empty</h1>
+{% else %}
+
+<div style="margin: 0px 30px;">
+    <table id="table_1" class="container" style="margin-left:0;">
+        <th><span style="text-transform:uppercase;">DOMAIN</span></th>
+        {% for url in urls %}
+        <tr>
+            <th>{{url['domain']}}</th>
+            <th style="width:20%"></th>
+            <th style="width:20%"></th>
+            <th style="width: 0%;"><a onclick="return send_verify('{{url['domain']}}','{{url['type']}}')" {{a}}
+                   class="btn btn-success">True</a>
+            </th>
+            <th style="width: 0%;" ><a  onclick="return send_del('{{url['domain']}}','{{url['type']}}' )" class="btn btn-danger" {{a}}>False</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div style="margin: 0px 100px; margin-top:30px;">
+    <div class="pagination" style="right: 33px; position: absolute;">
+        {% if 1 != padgin_active %}
+        <a href="/legitimateReport/?page_index=min&domain_search={{domain_search}}">&laquo;</a>
+        {% endif %}
+        {% for pad in padging %}
+        {% if pad == padgin_active %}
+        <a class="active" href="/legitimateReport/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% else %}
+        <a href="/legitimateReport/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% endif %}
+        {% endfor %}
+        {% if 1 != padgin_active %}
+        <a href="/legitimateReport/?page_index=max&domain_search={{domain_search}}">&raquo;</a>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}

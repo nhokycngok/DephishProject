@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css">
+</head>
+<body style="width: 30%;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    margin: 100px auto;">
+  <form name="login_form">
+    <div class="container">
+        <h1 style="text-align: center;">Login</h1>
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <p class="error error--hidden"></p>
+      <button type="submit" value="Signup">Login</button>
+    </div>
+  </form>
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% block title %}{{list_name}}{% endblock %}
+{% block content %}
+
+<H1 style="color:#CC9E29;margin-left: 30px;">{{list_name}}</H1>
+<a class="add_style btn btn-primary " onclick="openForm('{{list}}')"
+   {{c}}>Add new</a>
+{% if list == 'black' %}
+<div id="search_black" style="width:400px; display:block; float:right; margin-top:-67px">
+    <form action="/blacklist/" class="form-container" method="get" style="max-width: 800px;">
+        <!--        <h5>Search in blacklist</h5>-->
+        <div style="display: flex">
+            <div>
+                <!--                <label for="domain_search"><b>Domain search</b></label>-->
+                <input id="up_1" type="text" placeholder="{{domain_search}}" name="domain_search"  style="height:45px" required>
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% else %}
+<div id="search_white" style="width:400px; display: block; float:right; margin-top:-67px">
+    <form action="/whitelist/" class="form-container" method="get" style="max-width: 800px;">
+
+        <div style="display: flex">
+            <div>
+                <!--                <label for="domain_search"><b>Domain search</b></label>-->
+                <input type="text" placeholder="{{domain_search}}" name="domain_search" type="text" style="height: 45px;" required>
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endif %}
+<div class="form-popup" id="update_black" style="margin: 10px 24% 10px;  width: 800px; border: none">
+    <form action="/update" class="form-container" method="post" style="max-width: 800px;     margin: 0px 13%;">
+        <div style="display: flex">
+            <input id="old_domain" name="old_domain" type="text" hidden>
+            <input id="index_black" name="index_black" type="text" value="{{padgin_active}}"   style="height:45px"hidden>
+            <div>
+                <input id="up_domain" type="text" placeholder="Enter Domain" name="up_domain"   style="height:45px ;width: 300px;" required>
+            </div>
+            <div>
+                <select name="up_type" id="up_type" class="style_select_member">
+                    <option value="phishing">phishing</option>
+                    <option value="brand abuse">brand abuse</option>
+                    <option value="undefined">undefined</option>
+                </select>
+            </div>
+            <div>
+                <select name="up_level" id="up_level" class="style_select_member">
+                    <option value="low">low</option>
+                    <option value="medium">medium</option>
+                    <option value="high">high</option>
+                    <option value="undefined">undefined</option>
+                </select>
+            </div>
+            
+            <div>
+                <button type="submit" class=" popup_search">Update
+                </button>
+            </div>
+           
+        </div>
+    </form>
+</div>
+
+<div class="form-popup" id="update_white" style="margin: 10px 37% 10px;  width:400px; border: none">
+    <form action="/update" class="form-container" method="post" style="max-width: 800px;   ">
+        <!--        <h3>Update domain in white list</h3>-->
+        <div style="display: flex">
+            <input id="old_domain_" name="old_domain" type="text" hidden>
+            <input id="index_white" name="index_white" type="text" value="{{padgin_active}}"  style="height:45px" hidden>
+            <div>
+                <!--                <label for="domain"><b>Domain</b></label>-->
+                <input id="up_domain_" type="text"  style="height:45px; width: 300px;" placeholder="Enter Domain" name="up_domain" required>
+            </div>
+            <div>
+                <button type="submit" class=" popup_search">Update
+                </button>
+            </div>
+            
+        </div>
+    </form>
+</div>
+
+<div class="form-popup" id="myForm1" style="margin: 10px 24% 10px;  width: 800px; border: none">
+    <form action="/addblack/" class="form-container" method="post" style="max-width: 800px;     margin: 0px 13%;">        
+        <div style="display: flex">
+            <div>                
+                <input type="text"  style="height:45px; width: 300px;" placeholder="Enter Domain" name="domain" required>
+            </div>
+            <div>
+                <select name="type" id="type" class="style_select_member">
+                    <option value="phishing">phishing</option>
+                    <option value="brand abuse">brand abuse</option>
+                    <option value="undefined">undefined</option>
+                </select>
+            </div>
+            <div>
+                <select name="level" id="level" class="style_select_member">
+                    <option value="low">low</option>
+                    <option value="medium">medium</option>
+                    <option value="high">high</option>
+                    <option value="undefined">undefined</option>
+                </select>
+            </div>            
+            <div>
+                <button type="submit" class=" popup_search">Add
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="form-popup" id="myForm2" style=" margin: 10px 32% 10px;  width: 579px; border: none">
+    <form action="/addwhite/" class="form-container" method="post" style="max-width: 530px;">
+        <div style="display: grid">
+            <!--            <h3>Add new domain for white list</h3>-->
+            <div style="display: flex">
+                <b style="margin-top: 11px;font-size: 26px;padding-right: 10px;">Domain</b>
+                <input type="text"  style="height:45px" placeholder="Enter Domain" name="domain" required>
+                <button type="submit" class=" popup_search">Add
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div style="margin: 0px 30px;">
+    <table id="table_1" class="container" style="margin-left:0;">
+        {% for column in columns %}
+        <th><span style="text-transform:uppercase; font-size: larger;">{{column}}</span>
+        </th>
+        {% endfor %}
+        {% for url in urls %}
+        <tr>
+            {% for key, val in url.items() %}
+            {% if key != '_id' %}
+            <th style="width:25%;">{{val}}</th>
+            {% endif %}
+            {% endfor %}
+            {% if list == 'white' %}
+            <th style="width:50%;"></th>
+            {% endif %}
+            <th style="width:0%;"><a
+                    onclick="update('{{url['domain']}}','{{url['type']}}','{{url['level']}}', '{{list}}')" {{b}}
+                    class="btn btn-primary">Update</a>
+            </th>
+            <th style="width:0%;"><a
+                    href="/delete?domain={{url['domain']}}&list={{list}}&index_del={{padgin_active}}" {{b}}
+                    class="btn btn-secondary"
+                    onclick="return confirm('Are you sure you want to delete {{url['domain']}}?')">Delete</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% if list == 'white' %}
+<div style="margin: 0px 100px; margin-top:30px;">
+    <div class="pagination" style="right: 33px; position: absolute;">
+        <a href="/whitelist/?page_index=min&domain_search={{domain_search}}">&laquo;</a>
+        {% for pad in padging %}
+        {% if pad == padgin_active %}
+        <a class="active" href="/whitelist/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% else %}
+        <a href="/whitelist/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% endif %}
+        {% endfor %}
+        <a href="/whitelist/?page_index=max&domain_search={{domain_search}}">&raquo;</a>
+    </div>
+</div>
+{% else %}
+<div style="margin: 0px 100px; margin-top:30px;">
+    <div class="pagination" style="right: 33px; position: absolute;">
+        <a href="/blacklist/?page_index=min&domain_search={{domain_search}}">&laquo;</a>
+        {% for pad in padging %}
+        {% if pad == padgin_active %}
+        <a class="active" href="/blacklist/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% else %}
+        <a href="/blacklist/?page_index={{pad}}&domain_search={{domain_search}}">{{pad}}</a>
+        {% endif %}
+        {% endfor %}
+        <a href="/blacklist/?page_index=max&domain_search={{domain_search}}">&raquo;</a>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css">
+</head>
+<body>
+    <form name="signup_form">
+        
+        <div class="container">
+            <h1 style="text-align: center;">Create an Account</h1>
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="uname" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <p class="error error--hidden"></p>
+          <button type="submit" value="Signup">Sign Up</button>
+        </div>
+
+    </form>
+    
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/signup.js"></script>
+</body>
+</html>

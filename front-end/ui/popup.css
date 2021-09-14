@@ -1,0 +1,136 @@
+html,body {
+  width: auto;
+  height: auto;
+  margin: 0px;
+}
+
+h3.domain {
+  text-align:center;
+  font-size: 17px;
+}
+
+.button {
+  width: 118px;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 93px;
+  border: none;
+}
+
+.detail {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.detail:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.report {
+  background-color: #ed7d31; 
+  color: white;
+  margin-bottom: 15px;
+}
+
+.report:hover {
+  background-color: #CC9E29;
+  color: white;
+}
+
+ul.report {
+  margin-left: 30px;
+}
+
+.btn-small {
+  width: 70px;
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.danger {
+  background-color: maroon; 
+  color: white; 
+}
+
+.danger:hover {
+  background-color: red;
+  color: white;
+}
+
+.normal {
+  background-color: green; 
+  color: white; 
+}
+
+.normal:hover {
+  background-color: limegreen;
+  color: white;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+span.feat {
+  display: inline; /* the default for span */
+  width: auto;
+  height: auto;
+  float: left;
+  padding: 8px;
+  border: 1px solid gray;
+  color: white;
+  margin: 1px 1px;
+  border-radius: 10px;
+}
+div.marginTop {
+  margin-top: 10px;
+}
+
+b.confirm {
+  font-size: 16px;
+}
+
+.safe-image {
+  width: 125px;
+  height: 125px;
+  margin-left: 86px;
+}
+
+.danger-image {
+  width: 100px;
+  height: 110px;
+  margin-left: 97px;
+}
+
+.fpt-image {
+  width: 300px;
+  height: 100px;
+}
+
+.whitepop {
+  text-align: center;
+  margin-bottom: 50px; 
+  color: #73B14E;
+  font-size: medium;
+}
+
+.blackpop {
+  text-align: center;
+  margin-bottom: 50px; 
+  color: red;
+  font-size: medium;
+}
