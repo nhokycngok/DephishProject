@@ -1,0 +1,1 @@
+An extension aims to detect phishing websites and warns the user. User can submit (report/rating) a website that to be considered as phishing site. The classification is done on the client side with one-time download of classifier model and auto updating.
